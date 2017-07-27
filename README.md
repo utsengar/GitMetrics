@@ -17,7 +17,7 @@ Prerequisite: Python 2.7. I suggest creating a virtualenv to keep your machine c
 
 1. *Caching:* GitMetrics caches response from gitub in memory within the application lifecycle. This is not efficient if this is deployed on multiple instances. If there is a cache miss on any node, that node will make a call to github and cache the repsonse locally. Switch from SimpleCache to MemcachedCache or Redis for before production use. It can be switched from `app.py`
 2. *Periodic polling*: GitMetrics polls Github every 1hr. Again, this happens locally. For production usage this should be replaced with a worker which runs once and updates the cache. It can be solved by switching to a celery or any other task processor.
-3. *Initial Bootstrap*: Gitlfix warms up the cache right after server startup. This blocks server startup for <5sec. This can be improved in multi-node deployment by using celery.
+3. *Initial Bootstrap*: GitMetrics warms up the cache right after server startup. This blocks server startup for <5sec. This can be improved in multi-node deployment by using celery.
 
 ## Deployment
 
